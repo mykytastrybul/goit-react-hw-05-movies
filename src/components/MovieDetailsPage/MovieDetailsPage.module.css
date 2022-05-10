@@ -1,0 +1,38 @@
+.container {
+  padding: 40px;
+}
+
+.movie {
+  border-bottom: 1px solid black;
+  display: flex;
+  padding: 10px;
+}
+
+.descr {
+  margin-left: 20px;
+}
+
+.genres:not(:last-child) {
+  margin-right: 10px;
+}
+
+.links {
+  border-bottom: 1px solid black;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:not(:last-child) {
+  margin-right: 20px;
+}
+
+.btn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}

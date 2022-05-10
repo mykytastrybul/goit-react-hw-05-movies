@@ -1,0 +1,11 @@
+.title{
+    font-size: 30px;
+    margin-left: 50px;
+}
+.list{
+    list-style: none;
+}
+.link{
+    text-decoration: none;
+    color: black;
+}

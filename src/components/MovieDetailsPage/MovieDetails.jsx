@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { getMovie } from 'utils/moviesApi';
-import s from './MovieDetailsPage.module.css';
+import s from './MovieDetails.module.css';
 
-const MovieDetailsPage = ({ movieId }) => {
+const MovieDetails = () => {
+  const { movieId } = useParams();
+  const navigate = useNavigate();
   const [movie, setMovie] = useState([]);
   const [genres, setGenres] = useState([]);
 
@@ -11,15 +13,13 @@ const MovieDetailsPage = ({ movieId }) => {
     getMovie(movieId).then(res => setMovie(res));
     getMovie(movieId).then(({ genres }) => setGenres(genres));
     // eslint-disable-next-line
-  }, []);
+  }, [movieId, navigate]);
 
   return (
     <div className={s.container}>
-      <Link to="/">
-        <button type="button" className={s.btn}>
-          Go back
-        </button>
-      </Link>
+      <button type="button" className={s.btn} onClick={() => navigate(-1)}>
+        Go back
+      </button>
       <div className={s.movie}>
         <img
           src={
@@ -37,7 +37,9 @@ const MovieDetailsPage = ({ movieId }) => {
           <p>{movie.overview}</p>
           <h3>Genres</h3>
           {genres.map(el => (
-            <span key={el.id} className={s.genres}>{el.name}</span>
+            <span key={el.id} className={s.genres}>
+              {el.name}
+            </span>
           ))}
         </div>
       </div>
@@ -55,4 +57,4 @@ const MovieDetailsPage = ({ movieId }) => {
   );
 };
 
-export default MovieDetailsPage;
+export default MovieDetails;

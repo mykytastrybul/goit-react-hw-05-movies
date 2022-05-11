@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { getMovie } from 'utils/moviesApi';
 import s from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const [movie, setMovie] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -17,7 +24,18 @@ const MovieDetails = () => {
 
   return (
     <div className={s.container}>
-      <button type="button" className={s.btn} onClick={() => navigate(-1)}>
+      <button
+        type="button"
+        className={s.btn}
+        onClick={() => {
+          // navigate(-(pathname.split('/').length - 2));
+          if (pathname.split('/').length !== 4) {
+            navigate(-1);
+          } else {
+            navigate(-2);
+          }
+        }}
+      >
         Go back
       </button>
       <div className={s.movie}>

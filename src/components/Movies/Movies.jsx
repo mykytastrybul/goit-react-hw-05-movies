@@ -1,12 +1,13 @@
 import MoviesList from 'components/MoviesList/MoviesList';
 import Search from 'components/Search/Search';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getSearchMovie } from 'utils/moviesApi';
 
 getSearchMovie('batman');
 
 const Movies = ({ getMovieId }) => {
+  const { search } = useLocation();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
@@ -18,8 +19,23 @@ const Movies = ({ getMovieId }) => {
   const handleSubmit = e => {
     e.preventDefault();
     navigate({ search: `q=${query}` });
-    getSearchMovie(query).then(res => setMovies(res));
   };
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setQuery(search.slice(3));
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    if (query.length) {
+      getSearchMovie(query)
+        .then(res => setMovies(res))
+        .catch(err => console.log(err));
+    }
+    // eslint-disable-next-line
+  }, [query]);
 
   return (
     <>

@@ -1,8 +1,8 @@
-import Movies from 'components/MoviesPage/Movies';
+import Movies from 'components/Movies/Movies';
 import React from 'react';
 
-const MoviesPage = ({ getMovieId }) => {
-  return <Movies getMovieId={getMovieId} />;
+const MoviesPage = () => {
+  return <Movies />;
 };
 
 export default MoviesPage;

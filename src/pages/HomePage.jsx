@@ -1,8 +1,8 @@
-import Trending from 'components/HomePage/Trending';
+import Trending from 'components/Trending/Trending';
 import React from 'react';
 
-const HomePage = ({ getMovieId }) => {
-  return <Trending getMovieId={getMovieId} />;
+const HomePage = () => {
+  return <Trending />;
 };
 
 export default HomePage;

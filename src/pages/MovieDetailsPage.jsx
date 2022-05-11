@@ -1,8 +1,8 @@
-import MovieDetails from 'components/MovieDetailsPage/MovieDetails';
+import MovieDetails from 'components/MovieDetails/MovieDetails';
 import React from 'react';
 
-const MovieDetailsPage = ({ movieId }) => {
-  return <MovieDetails movieId={movieId} />;
+const MovieDetailsPage = () => {
+  return <MovieDetails />;
 };
 
 export default MovieDetailsPage;

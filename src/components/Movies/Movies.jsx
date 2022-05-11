@@ -18,7 +18,6 @@ const Movies = ({ getMovieId }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate({ search: `q=${query}` });
   };
 
   useEffect(() => {
@@ -30,6 +29,7 @@ const Movies = ({ getMovieId }) => {
 
   useEffect(() => {
     if (query.length) {
+      navigate({ search: `q=${query}` });
       getSearchMovie(query)
         .then(res => setMovies(res))
         .catch(err => console.log(err));
